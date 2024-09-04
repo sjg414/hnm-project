@@ -1,38 +1,111 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* 메뉴바 */
+.menubar {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  list-style-type: none;
+}
+
+/* 메뉴바 list */
+.menubar li {
+  padding: 10px;
+}
+
+/* 메뉴바 로고 */
+.menu-logo {
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.menu-logo img {
+  cursor: pointer;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* 로그인 컨테이너 */
+.login-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 20px;
+  cursor: pointer;
+}
+
+.menu-area {
+  display: flex;
+  justify-content: center;
+}
+
+.search-area {
+  border-bottom: 1px solid black;
+  position: absolute;
+  right: 20px;
+}
+
+.search-area input {
+  border: none;
+}
+
+.product-img {
+  width: 300px;
+  height: 400px;
+}
+
+.choice-new {
+  font-size: 0.7rem;
+}
+
+.productCard:hover {
+  transform: scale(1.1);
+}
+
+.login-form {
+  margin: 0 auto;
+  width: 600px;
+}
+
+.product-img {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.dropdown button {
+  border: 1px solid black;
+}
+
+.product-data div {
+  margin: 20px 0;
+}
+
+.side-menubar {
+  display: flex;
+  position: fixed;
+  width: 200px;
+  height: 100%;
+  background-color: burlywood;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  transition: 0.5s;
+}
+.side-exit {
+  position: absolute;
+  right: 10px;
+  z-index: 1;
+  margin: 15px;
+}
+
+.side-menubar li {
+  margin-top: 10px;
+  padding: 10px;
+  list-style-type: none;
+}
+
+.side-button {
+  position: relative;
+  width: 100px;
+  margin-left: 10px;
+}
+
+.top-area {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
