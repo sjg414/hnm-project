@@ -11,7 +11,7 @@ const ProductAll = () => {
 
   const getProductData = async () => {
     let search = query.get("q") || "";
-    let url = `http://localhost:5000/products?q=${search}`;
+    let url = `https://my-json-server.typicode.com/sjg414/hnm-project/products?q=${search}`;
     let response = await fetch(url);
     let data = await response.json();
     setItems(data);
