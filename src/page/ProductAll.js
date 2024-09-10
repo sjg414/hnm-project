@@ -1,32 +1,31 @@
 import React, { useEffect, useState } from "react";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import ProductCard from "../component/ProductCard";
-import { Col, Container, Row } from "react-bootstrap";
 import { useSearchParams } from "react-router-dom";
 
 const ProductAll = () => {
-  const [productList, setProductList] = useState([]); //productList 상태관리
-  const [query, setQuery] = useSearchParams();
+  const [items, setItems] = useState([]);
+  const [query, setQueay] = useSearchParams();
 
-  //db.json에서 product data 가져오기, search 기능 추가
-  const getProducts = async () => {
-    let searchQuery = query.get("q") || ""; //search keyword
-    let url = `https://my-json-server.typicode.com/sjg414/hnm-project/products?q=${searchQuery}`;
+  const getProductData = async () => {
+    let search = query.get("q") || "";
+    let url = `http://localhost:5000/products?q=${search}`;
     let response = await fetch(url);
     let data = await response.json();
-    setProductList(data);
+    setItems(data);
   };
 
-  //api 호출
   useEffect(() => {
-    getProducts();
+    getProductData();
   }, [query]);
-
   return (
     <div>
       <Container>
         <Row>
-          {productList.map((item) => (
-            <Col lg={3}>
+          {items.map((item) => (
+            <Col xs={15} md={6} lg={3}>
               <ProductCard item={item} />
             </Col>
           ))}

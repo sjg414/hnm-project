@@ -3,25 +3,30 @@ import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({ item }) => {
   const navigate = useNavigate();
-
-  //상품 클릭 시 상품 디테일 페이지 이동
-  const showDetail = () => {
-    navigate(`/product/${item.id}`);
+  const goToProductDatail = () => {
+    navigate(`/products/${item.id}`);
   };
   return (
-    <div
-      className="productCard"
-      onClick={() => {
-        showDetail();
-      }}
-    >
-      <img className="product-img" src={item?.img} alt="img" />
-      <div className="choice-new">
-        {item?.choice === true ? "Consious choice" : " "}
+    <div className="productCard" onClick={goToProductDatail}>
+      <div>
+        <img width={300} src={item?.img} alt="" />
       </div>
-      <div>{item?.title}</div>
-      <div>₩{item?.price}</div>
-      <div className="choice-new">{item?.new === true ? "신제품" : " "}</div>
+      <div>
+        <p className="productCard-small">
+          {item?.choice === true ? "consicou choice" : ""}
+        </p>
+      </div>
+      <div>
+        <p>{item?.title}</p>
+      </div>
+      <div>
+        <p>{item?.price}</p>
+      </div>
+      <div>
+        <p className="productCard-small">
+          {item?.new === true ? "신제품" : ""}
+        </p>
+      </div>
     </div>
   );
 };

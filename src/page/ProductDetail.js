@@ -1,76 +1,48 @@
 import React, { useEffect, useState } from "react";
-import { Container, Row, Col, Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import Dropdown from "react-bootstrap/Dropdown";
+import { Container, Row, Col, Button } from "react-bootstrap";
+import Form from "react-bootstrap/Form";
 
 const ProductDetail = () => {
-  let { id } = useParams(); //url :id값 받아오기
-  const [product, setProduct] = useState(null); //상품 정보 상태관리
-  const [dropText, setDropText] = useState("사이즈 선택");
+  const { id } = useParams();
+  const [product, setProduct] = useState(null);
 
-  //상품 정보 api 호출해서 받기
   const getProductDetail = async () => {
-    let url = `https://my-json-server.typicode.com/sjg414/hnm-project/products/${id}`;
+    let url = `http://localhost:5000/products/${id}`;
     let response = await fetch(url);
     let data = await response.json();
     setProduct(data);
   };
 
-  //DropDown text change
-  const changeDropText = (text) => {
-    setDropText(text);
-  };
-
-  //api 호출
   useEffect(() => {
     getProductDetail();
   }, []);
+
   return (
     <Container>
       <Row>
-        <Col className="product-img">
+        <Col className="detail-img">
           <img src={product?.img} alt="" />
         </Col>
-        <Col className="product-data">
+        <Col className="detail-data">
           <div>
-            <h5>{product?.title}</h5>
-          </div>
-          <div>₩{product?.price}</div>
-          <div className="choice-new">
-            {product?.choice === true ? "Consious choice" : " "}
+            <h4>{product?.title}</h4>
           </div>
           <div>
-            <Dropdown className="dropdown">
-              <Dropdown.Toggle variant="light" id="dropdown-sizeSelect">
-                {dropText}
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
-                <Dropdown.Item
-                  href="#/size-S"
-                  onClick={(text) => {
-                    changeDropText("S");
-                  }}
-                >
-                  S
-                </Dropdown.Item>
-                <Dropdown.Item
-                  href="#/size-M"
-                  onClick={(text) => {
-                    changeDropText("M");
-                  }}
-                >
-                  M
-                </Dropdown.Item>
-                <Dropdown.Item
-                  href="#/size-L"
-                  onClick={(text) => {
-                    changeDropText("L");
-                  }}
-                >
-                  L
-                </Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
+            <h5>₩{product?.price}</h5>
+          </div>
+          <div>
+            <p className="productCard-small">
+              {product?.choice === true ? "consicou choice" : ""}
+            </p>
+          </div>
+          <div className="sizeSelect">
+            <Form.Select aria-label="sizeSelect">
+              <option>사이즈 선택</option>
+              <option value="S">S</option>
+              <option value="M">M</option>
+              <option value="L">L</option>
+            </Form.Select>
           </div>
           <div>
             <Button variant="dark">추가</Button>
